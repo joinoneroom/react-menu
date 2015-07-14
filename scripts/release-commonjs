@@ -1,10 +1,10 @@
 #!/bin/bash -e
 
-$VERSION=$(node -p 'p=require("./package");p.version')
+VERSION=$(node -p 'p=require("./package");p.version')
 
 git checkout -b common-js/v${VERSION}
 
-./build-commonjs
+./scripts/build-commonjs
 node -p 'p=require("./build/package");p.main="build/lib/index.js";JSON.stringify(p,null,2)' > package.json
 
 git add build package.json
